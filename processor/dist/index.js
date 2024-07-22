@@ -31,11 +31,11 @@ function main() {
                 topic: ZAPIER_TOPIC_NAME,
                 messages: zapRuns.map(elemet => {
                     return {
-                        value: elemet.id
+                        value: elemet.zapRunId
                     };
                 })
             });
-            yield prisma_processor_client.zapRunOutbox.deleteMany({
+            const deleted_datas = yield prisma_processor_client.zapRunOutbox.deleteMany({
                 where: {
                     id: {
                         in: zapRuns.map(element => {
@@ -44,6 +44,7 @@ function main() {
                     }
                 }
             });
+            console.log(deleted_datas);
             yield new Promise(r => {
                 setTimeout(r, 3000);
             });

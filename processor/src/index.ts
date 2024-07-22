@@ -23,16 +23,15 @@ async function main() {
             take: 10
         })
         console.log(zapRuns)
-
         producer.send({
             topic: ZAPIER_TOPIC_NAME,
             messages: zapRuns.map(elemet => {
                 return {
-                    value: elemet.id
+                    value: elemet.zapRunId
                 }
             })
         })
-        await prisma_processor_client.zapRunOutbox.deleteMany({
+        const deleted_datas = await prisma_processor_client.zapRunOutbox.deleteMany({
             where: {
                 id: {
                     in: zapRuns.map(element => {
@@ -40,10 +39,8 @@ async function main() {
                     })
                 }
             }
-
-
-
         })
+        console.log(deleted_datas)
         await new Promise(r => {
             setTimeout(r, 3000)
         })
