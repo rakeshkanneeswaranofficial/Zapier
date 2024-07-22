@@ -35,6 +35,18 @@ function main() {
                     };
                 })
             });
+            yield prisma_processor_client.zapRunOutbox.deleteMany({
+                where: {
+                    id: {
+                        in: zapRuns.map(element => {
+                            return element.id;
+                        })
+                    }
+                }
+            });
+            yield new Promise(r => {
+                setTimeout(r, 3000);
+            });
         }
     });
 }

@@ -32,12 +32,26 @@ async function main() {
                 }
             })
         })
+        await prisma_processor_client.zapRunOutbox.deleteMany({
+            where: {
+                id: {
+                    in: zapRuns.map(element => {
+                        return element.id
+                    })
+                }
+            }
 
-        
+
+
+        })
+        await new Promise(r => {
+            setTimeout(r, 3000)
+        })
+
     }
+
+
 
 }
 
 main();
-
-
