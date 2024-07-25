@@ -1,3 +1,5 @@
+// this file =define the express a that will catch the request 
+
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 
@@ -9,6 +11,8 @@ app.post("/hooks/catch/:userId/:zapId", async (req, res) => {
     const userId = req.params.userId;
     const zapId = req.params.zapId;
     const body = req.body;
+
+    // here we are adding the data into the zapRun and zapRunOut Box simultaneously using transaction
 
     await client.$transaction(async tx => {
         const run = await tx.zapRun.create({
