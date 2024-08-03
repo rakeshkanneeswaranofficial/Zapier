@@ -60,6 +60,8 @@ router.post('/signin', async function (req, res) {
         id: user.id
     }, JWT_PASSWORD)
 
+    return res.json({ token: token});
+
 })
 //----------------------------------------------------------------
 

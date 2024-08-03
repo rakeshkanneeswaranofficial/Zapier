@@ -1,21 +1,19 @@
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { JWT_PASSWORD } from "./config";
-import { NextFunction, Response, Request } from "express";
 
-export function authMiddleware(next: NextFunction, req: Request, res: Response) {
+export function authMiddleware (req: Request, res: Response, next: NextFunction) {
     const token = req.headers.authorization as unknown as string;
+    // console.log(token)
+    
     try {
-
         const payload = jwt.verify(token, JWT_PASSWORD);
-        //@ts-ignore
-        req.id = payload.id;
+        // @ts-ignore
+        req.id = payload.id
         next();
-
-    } catch (error) {
-
-
+    } catch(e) {
         return res.status(403).json({
-            "error": "you are not auntheicated user"
+            message: "You are not logged in"
         })
     }
 }
