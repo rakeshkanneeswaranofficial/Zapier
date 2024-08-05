@@ -17,4 +17,6 @@ app.use("/api/v1/trigger", triggerRouter);
 
 app.use("/api/v1/action", actionRouter);
 
-app.listen(3000);
+app.listen(3000 , ()=>{
+    console.log("app is listening at http://localhost:3000")
+});
