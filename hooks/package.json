@@ -3,7 +3,7 @@
     "prisma": "^5.17.0"
   },
   "scripts": {
-    "start": "tsc -b && node dist/index.js"
+    "start": "./kill.sh && tsc -b && node dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "^5.17.0",

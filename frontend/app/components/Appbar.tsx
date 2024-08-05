@@ -16,7 +16,7 @@ export default function Appbar() {
                 <span className='text-orange-600'>_ </span>Zapier
             </div>
             <div className="flex space-x-4">
-                <LinkButton onClick={() => router.push('/contact-sales')}>
+                <LinkButton onClick={() => router.push('https://zapier.com/l/contact-sales?demo_source=cs_nav_header_/')}>
                     Contact Sales
                 </LinkButton>
                 <LinkButton onClick={() => router.push('/login')}>
