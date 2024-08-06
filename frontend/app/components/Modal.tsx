@@ -7,7 +7,7 @@ interface ZapModalProps {
     onClose: () => void;
     title: string;
     index: number;
-    onSelectAction: (actionName: string, index: number) => void;
+    onSelectAction: (actionName: string, actionId : string, index: number) => void;
     type : string;
 }
 
@@ -85,12 +85,12 @@ export function ZapModal({ showModal, onClose, title, index, onSelectAction , ty
 
                                     {type == "action" ? availableActions.map(action => <button
                                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-                                        onClick={() => onSelectAction(action.name, index)}
+                                        onClick={() => onSelectAction(action.name, action.id ,  index)}
                                     >
                                         {action.name}
                                     </button>) : availableTrigger.map(action => <button
                                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-                                        onClick={() => onSelectAction(action.name, index)}
+                                        onClick={() => onSelectAction(action.name, action.id , index)}
                                     >
                                         {action.name}
                                     </button>)}
